@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    command: echo "Frontend built. Served via NGINX."
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      POSTGRES_DB: educause
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: educause
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
