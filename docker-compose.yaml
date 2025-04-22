@@ -19,7 +19,7 @@ services:
       POSTGRES_PASSWORD: password
 
   db:
-    image: postgres:15
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_DB: educause
