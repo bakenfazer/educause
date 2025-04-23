@@ -5,7 +5,7 @@ services:
     build: ./frontend
     depends_on:
       - backend
-    command: echo "Frontend built. Served via NGINX."
+    # command: echo "Frontend built. Served via NGINX."
 
   backend:
     build: ./backend
