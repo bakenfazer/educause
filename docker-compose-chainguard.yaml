@@ -9,8 +9,6 @@ services:
       dockerfile: ./Dockerfile-chainguard
     depends_on:
       - backend
-    # command: echo "Frontend built. Served via NGINX."
-    # command: ["node", "echo-frontend-built.js"]
 
   backend:
     image: educause-backend-cg:latest
