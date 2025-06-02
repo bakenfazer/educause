@@ -1,8 +1,7 @@
 FROM cgr.dev/chainguard/node:latest-dev AS builder
 
 WORKDIR /app
-
-COPY package.json .
+COPY . .
 RUN npm install
 
 FROM cgr.dev/chainguard/node:latest

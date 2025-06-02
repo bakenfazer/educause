@@ -3,6 +3,10 @@ import psycopg2
 import os
 
 def register_routes(app):
+    @app.route('/', methods=['GET'])
+    def root():
+        return 'Hooray! The API works.', 200
+
     @app.route('/courses', methods=['GET'])
     def get_courses():
         conn = connect_db()
